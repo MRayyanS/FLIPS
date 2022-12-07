@@ -1,54 +1,47 @@
 FLIPS MATLAB Package - By M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani
 
-See [1] for a detailed description of the algorithms included in this package.
+FLIPS is an algorithm to solve the constrained linear inverse problems (LIP), see [1] for a detailed description of FLIPSS. In particular, the software here is a MATLAB package for the image denoising problem that solves
 
-
-
-
-FLIPS is an algorithm to solve the constrained linear inverse problems (LIP) presented in . In particular, the software here is a MATLAB package for the image denoising problem:
-
-Min_f       ||f||_1 
+min_f       ||f||_1 
 s.t.        ||x – Df||_2 <= epsilon
 
 
 'Main' file contains the general problem of this package.
 
-The problem is solved with the oracles and state-of-the-art algorithms presented in the paper.
 The other files contain the following information:
-	- C_SALSA.m --> Contains the C-SALSA solver as described in, see [2] for details of the algorithm 
+- C_SALSA.m --> Contains the C-SALSA solver as described in, see [2] for details of the algorithm 
 	
-	- ChambollePock.m --> Contains the Chambolle-Pock solver, see [3] for details of the algorithm
+- ChambollePock.m --> Contains the Chambolle-Pock solver, see [3] for details of the algorithm
   
-	- DCT.m --> The file in which the square DCT-dictionary is computed. 
+- DCT.m --> The file in which the square DCT-dictionary is computed. 
 	
-  - etafunc.m --> Contains the computations of the cost function eta, as described in [1]
+- etafunc.m --> Contains the computations of the cost function eta, as described in [1]
   
-	- Fista Package --> Package from Tiep Vu https://github.com/tiepvupsu/FISTA open-source (thv102@psu.edu, 4/6/2016).
+- Fista Package --> Package from Tiep Vu https://github.com/tiepvupsu/FISTA open-source (thv102@psu.edu, 4/6/2016).
 	
-  - FLIPS_Solver --> Solver FLIPS for the Quadratic Oracle
+- FLIPS_Solver --> Solver FLIPS for the Quadratic Oracle
 	
-  - Frank_Wolf --> Solver FLIPS for the Linear Oracle
+- Frank_Wolf --> Solver FLIPS for the Linear Oracle
 	
-  - g_descendireciton_FW --> Part of the FLIPS Solver for Linear Oracle.
+- g_descendireciton_FW --> Part of the FLIPS Solver for Linear Oracle.
 	
-  - gradient_eta --> Contains the computations for the gradient of eta, as described [1]
+- gradient_eta --> Contains the computations for the gradient of eta, as described [1]
+		
+- h_updatestep.m --> Update step of the variable h.
 	
+- inputs --> Contains some standart images that can be used as input. The references of the inputs are listed in the report.
 	
-  - h_updatestep.m --> Update step of the variable h.
+- Main.m --> As described above.
 	
-  - inputs --> Contains some standart images that can be used as input. The references of the inputs are listed in the report.
+- patch2image.m --> Function that recreates the image from sliding image patches.
 	
-  - Main.m --> As described above.
-	
-  - patch2image.m --> Function that recreates the image from sliding image patches.
-	
-  - PGD_Oracle.m --> Solver for only Projected Gradient Descent.
+- PGD_Oracle.m --> Solver for only Projected Gradient Descent.
  	
-  - ProjectOntoL1Ball.m --> Projection function to ||.||_1 norm from [4]
+- ProjectOntoL1Ball.m --> Projection function to ||.||_1 norm from [4]
 	
-	- soft.m --> Soft thresholding function
+- soft.m --> Soft thresholding function
 	
-  - stepsize_selection.m --> Exact line search function.
+- stepsize_selection.m --> Exact line search function.
 
 These files are allowed to be adjusted. However, without permission of the authors, it is not allowed to publish or distribute these files. 
 
@@ -56,9 +49,10 @@ This research was supported by the European Research Council (ERC) under the Eur
 
 
 
-%%%======================================================================================================================================================
-References
-%%%======================================================================================================================================================
+%%%=======================================================================================
+
+-References
+
 
 [1] Fast Algorithm for Constrained Linear Inverse Problems. M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani, arXiv: 2212.01068.
 
