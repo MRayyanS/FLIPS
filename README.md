@@ -55,15 +55,13 @@ This research was supported by the European Research Council (ERC) under the Eur
 -References
 
 
-[1] M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani, Fast Algorithm for Constrained Linear Inverse Problems. arXiv: 2212.01068.
+[1] M. R. Sheriff, F. F. Redel, and P. Mohajerin Esfahani, Fast Algorithm for Constrained Linear Inverse Problems. arXiv: 2212.01068.
 
-[2] M. V. Afonso, J. M. Bioucas-Dias, and M. A. T. Figueiredo, An Augmented Lagrangian Approach to the Constrained
-    Optimization Formulation of Imaging Inverse Problems, IEEE Transactions On Image Processing, (2009).
+[2] M. V. Afonso, J. M. Bioucas-Dias, and M. A. T. Figueiredo, An Augmented Lagrangian Approach to the Constrained Optimization Formulation of Imaging Inverse Problems, IEEE Transactions On Image Processing, (2009).
     
-[3] A. Chambolle and T. Pock. On the ergodic convergence rates of a first-order
-	  primal–dual algorithm. Mathematical Programming, 159(1-2):253–287, 9 2016
+[3] A. Chambolle and T. Pock. On the Ergodic Convergence rates of a First-order Primal–Dual Algorithm. Mathematical Programming, 159(1-2):253–287, 9 2016
     
-[4] J. Duchi, S.S. Shwartz, and T. Chandra. Efficient Projections onto the l1-Ball for Learning in High Dimensions Google, Technical report, Proceedings of the 25th International Conference on Machine Learning, 2008, Mountain View, CA 94043 
+[4] J. Duchi, S.S. Shwartz, and T. Chandra. Efficient Projections onto the l1-Ball for Learning in High Dimensions, Google, Technical report, Proceedings of the 25th International Conference on Machine Learning, 2008, Mountain View, CA 94043 
 
 
 
