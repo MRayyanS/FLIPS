@@ -2,8 +2,9 @@ FLIPS MATLAB Package - By M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani
 
 FLIPS is an algorithm to solve the constrained linear inverse problems (LIP), see [1] for a detailed description of FLIPSS. In particular, the software here is a MATLAB package for the image denoising problem that solves
 
-min_f       ||f||_1 
-s.t.        ||x – Df||_2 <= epsilon
+min_f           ||f||_1
+
+s.t.            ||x – Df||_2 <= epsilon
 
 
 'Main' file contains the general problem of this package.
