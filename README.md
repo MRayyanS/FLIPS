@@ -8,7 +8,7 @@ s.t.        ||x – Df||_2 <= epsilon
 
 'Main' file contains the general problem of this package.
 
-The other files contain the following information:
+The other files contain the following:
 - C_SALSA.m --> Contains the C-SALSA solver as described in, see [2] for details of the algorithm 
 	
 - ChambollePock.m --> Contains the Chambolle-Pock solver, see [3] for details of the algorithm
@@ -54,17 +54,15 @@ This research was supported by the European Research Council (ERC) under the Eur
 -References
 
 
-[1] Fast Algorithm for Constrained Linear Inverse Problems. M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani, arXiv: 2212.01068.
+[1] M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani, Fast Algorithm for Constrained Linear Inverse Problems. arXiv: 2212.01068.
 
 [2] M. V. Afonso, J. M. Bioucas-Dias, and M. A. T. Figueiredo, An Augmented Lagrangian Approach to the Constrained
     Optimization Formulation of Imaging Inverse Problems, IEEE Transactions On Image Processing, (2009).
     
-[3] Antonin Chambolle and Thomas Pock. On the ergodic convergence rates of a first-order
+[3] A. Chambolle and T. Pock. On the ergodic convergence rates of a first-order
 	  primal–dual algorithm. Mathematical Programming, 159(1-2):253–287, 9 2016
     
-[4] John Duchi, Shai@tti-C Org, and Tushar Chandra. Efficient Projections onto the l1-Ball
-	  for Learning in High Dimensions Google, Mountain View, CA 94043 Shai Shalev-Shwartz.
-	  Technical report, Proceedings of the 25th International Conference on Machine Learning, 2008
+[4] J. Duchi, S.S. Shwartz, and T. Chandra. Efficient Projections onto the l1-Ball for Learning in High Dimensions Google, Technical report, Proceedings of the 25th International Conference on Machine Learning, 2008, Mountain View, CA 94043 
 
 
 
