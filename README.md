@@ -6,51 +6,16 @@ s.t.            ||x – Df||_2 <= epsilon .
 
 For a better understanding of the Binary selection problem, see Section 4.1 of [1].
 
-1. The "Main_Binary_Selection.m" file is the main file that generates synthetic problem data for the LIP and then calls FLIPS to solve the LIPs.
+1. The "Main_Binary_Selection.m" file is the main file that generates synthetic problem data for the LIP and then calls FLIPS to solve it.
+ 
+2. The "FLIPS_Solver.m" file contains the FLIPS solver
 
-2. The "The "Main_Image_Denoising_CPUtimes.m" file is the main file that extracts patches from the image and calls various algorithms to solve the LIPs."
+3. The "show_results.m" creates the convergence plots and converts into pdf
 
 
-'Main' file contains the general problem of this package.
+These files are allowed to be adjusted. However, it is not allowed to publish or distribute these files without permission from the authors.
 
-The other files contain the following:
-- C_SALSA.m --> Contains the C-SALSA solver as described in, see [2] for details of the algorithm 
-	
-- ChambollePock.m --> Contains the Chambolle-Pock solver, see [3] for details of the algorithm
-  
-- DCT.m --> The file in which the square DCT-dictionary is computed. 
-	
-- etafunc.m --> Contains the computations of the cost function eta, as described in [1]
-  
-- Fista Package --> Package from Tiep Vu https://github.com/tiepvupsu/FISTA open-source (thv102@psu.edu, 4/6/2016).
-	
-- FLIPS_Solver --> Solver FLIPS for the Quadratic Oracle
-	
-- Frank_Wolf --> Solver FLIPS for the Linear Oracle
-	
-- g_descendireciton_FW --> Part of the FLIPS Solver for Linear Oracle.
-	
-- gradient_eta --> Contains the computations for the gradient of eta, as described [1]
-		
-- h_updatestep.m --> Update step of the variable h.
-	
-- inputs --> Contains some standart images that can be used as input. The references of the inputs are listed in the report.
-	
-- Main.m --> As described above.
-	
-- patch2image.m --> Function that recreates the image from sliding image patches.
-	
-- PGD_Oracle.m --> Solver for only Projected Gradient Descent.
- 	
-- ProjectOntoL1Ball.m --> Projection function to ||.||_1 norm from [4]
-	
-- soft.m --> Soft thresholding function
-	
-- stepsize_selection.m --> Exact line search function.
-
-These files are allowed to be adjusted. However, without permission of the authors, it is not allowed to publish or distribute these files. 
-
-This research was supported by the European Research Council (ERC) under the European Unions Horizon 2020 research and innovation programme (TRUST-949796).
+This research was supported by the European Research Council (ERC) under the European Unions Horizon 2020 research and innovation program (TRUST-949796).
 
 
 
