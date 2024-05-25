@@ -4,7 +4,7 @@ min_f           ||f||_1
 
 s.t.            ||x – Df||_2 <= epsilon,
 
-where D is the inverse-DCT matrix.
+where D is the inverse-DCT matrix. We also compare FLIPS with other standard algorithms namely C-SALSA and Chambolle-Pock algorithms.
 
 1. The "Main_Image_Denoising_CPUtimes.m" file is the main file that extracts patches from the image and calls various algorithms to solve the LIPs.
 
