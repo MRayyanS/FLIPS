@@ -1,10 +1,14 @@
-FLIPS MATLAB Package - By M. R. Sheriff, F. F. redel, and P. Mohajerin Esfahani
+FLIPS MATLAB Package - By M. R. Sheriff, F. F. Redel, and P. Mohajerin Esfahani, see [1] for a detailed description of FLIPS. In particular, the MATLAB code in this sub-branch is for the Binary Selection problem that solves
 
-FLIPS is an algorithm to solve the constrained linear inverse problems (LIP), see [1] for a detailed description of FLIPSS. In particular, the software here is a MATLAB package for the image denoising problem that solves
+min_f           ||f||_inf
 
-min_f           ||f||_1
+s.t.            ||x – Df||_2 <= epsilon .
 
-s.t.            ||x – Df||_2 <= epsilon
+For a better understanding of the Binary selection problem, see Section 4.1 of [1].
+
+1. The "Main_Binary_Selection.m" file is the main file that generates synthetic problem data for the LIP and then calls FLIPS to solve the LIPs.
+
+2. The "The "Main_Image_Denoising_CPUtimes.m" file is the main file that extracts patches from the image and calls various algorithms to solve the LIPs."
 
 
 'Main' file contains the general problem of this package.
