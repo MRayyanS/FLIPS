@@ -24,7 +24,7 @@ These files are allowed to be adjusted. However, it is not allowed to publish or
 This research was supported by the European Research Council (ERC) under the European Unions Horizon 2020 research and innovation program (TRUST-949796).
 
 
-%%%=======================================================================================
+%%%=====================================================================
 
 -References
 
