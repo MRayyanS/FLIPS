@@ -1,104 +1,109 @@
+
 %% Recover images 
 
 % Image recovery 
-Recover_input                       = X.no_noise;
-Recover_input_noise                 = X.noise;
+Recover_input             = X_no_noise ;
+Recover_input_noise       = X_noise ;
 
-% recover output by doing idct2 transform
-Recover_output_FLIPS                = recover_vectorised_image_from_dct_transform(F, dictionary, patch_dimensions) ;
+l2_recovered_output       = D*F(:,1) ;
+l2_output_measurement     = C*l2_recovered_output ;
+l2_recovered_output       = ((l2_output_measurement'*X_noise)/norm(l2_output_measurement, 2)^2)*l2_recovered_output ;
+l2_recovered_image        = reshape(l2_recovered_output, input_im_size) ;
+
+FLIPS_recovered_output    = D*F(:,end) ;
+FLIPS_output_measurement  = C*FLIPS_recovered_output ;
+FLIPS_recovered_output    = ( (FLIPS_output_measurement'*X_noise)/norm(FLIPS_output_measurement,2)^2 ).*FLIPS_recovered_output ;
+
+Recovered_image       = reshape(FLIPS_recovered_output, input_im_size) ;
 
 
-% final recovered images
-im_input            = patch2image(Recover_input,im.noise,store_inp);
-im_noisy            = patch2image(Recover_input_noise,im.noise,store_inp);
-im_output           = patch2image(Recover_output_FLIPS,im.noise,store_inp);
 
 
-%% Show images and export pdfs
+%% Show images and export pdf
 
 % original image
-
-figure(1)
 fig_original_image = tiledlayout(1,1,'Padding','tight');
 fig_original_image.Units = 'inches';
 fig_original_image.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(im_input) ;
+imagesc(im_original) ;
 colormap(gray) ;
-image = gcf;
-exportgraphics(image,'lena_original.pdf','ContentType','vector') ;
+
+im = gcf;
+exportgraphics(im,'lena_original.pdf','ContentType','vector') ;
 
 
-% noisy image
-
-figure(2)
-fig_original_image = tiledlayout(1,1,'Padding','tight');
-fig_original_image.Units = 'inches';
-fig_original_image.OuterPosition = [0.25 0.25 3 3];
+% recovered image image
+fig_recovered_image = tiledlayout(1,1,'Padding','tight');
+fig_recovered_image.Units = 'inches';
+fig_recovered_image.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(im_noisy) ;
+imagesc(Recovered_image) ;
 colormap(gray) ;
-image = gcf;
-exportgraphics(image,'lena_noisy.pdf','ContentType','vector') ;
+
+im = gcf;
+exportgraphics(im,'lena_FLIPS_recovered.pdf','ContentType','vector') ;
 
 
-% recovered image
+%% Plotting relevant things
 
-figure(3)
-fig_original_image = tiledlayout(1,1,'Padding','tight');
-fig_original_image.Units = 'inches';
-fig_original_image.OuterPosition = [0.25 0.25 3 3];
+% Plotting sub-optimality of FLIPS
+sub_opt                   = eta - eta(end).*ones(size(eta)) ;
+fig_sub_opt               = tiledlayout(1,1,'Padding','tight');
+fig_sub_opt.Units         = 'inches';
+fig_sub_opt.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(im_output) ;
-colormap(gray) ;
-image = gcf;
-exportgraphics(image,'lena_recovered.pdf','ContentType','vector') ;
+t = 1:maxiter ; % iteration index
+semilogy(t,sub_opt,'-o','MarkerSize',4);
+grid on;
+axis padded;
+xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
+legend('$ \eta(h_t) - \eta(h^*) $ ', 'FontSize',10,'Interpreter','latex','Location','southwest');
+% ylabel('$ \eta(h_t) - \eta(h^*) $', 'FontSize',10,'Interpreter','latex');
+
+im = gcf;
+exportgraphics(im,'lena_sub_optimality.pdf','ContentType','vector') ;
 
 
-%% Different functions needed
-
-
-function x_output = patch2image(x_input,im,store_inp)
-% Reconstructing image from the extracted/reconstructed (sliding) image patches
-
-[imdim1,imdim2]=size(im);
-indices_store_patches_inp= reshape(1:imdim1*imdim2,[imdim1 imdim2]);
-
-rebuild_inp_rec     =  zeros(imdim1,imdim2);
-for i=1:imdim1
-    for j=1:imdim2
-        idx_inp = store_inp==indices_store_patches_inp(i,j);
-        rebuild_inp_rec(i,j)=mean(x_input(idx_inp),'all');
-    end
-end
-x_output = rebuild_inp_rec;
-
+% Plotting the distance to the true solution
+distance = zeros(1, maxiter) ;
+for t = 1:maxiter
+    distance(t) = norm(F(:,t) - F_true, 2) ;
 end
 
+fig_distance = tiledlayout(1,1,'Padding','tight');
+fig_distance.Units = 'inches';
+fig_distance.OuterPosition = [0.25 0.25 3 3];
+nexttile;
 
-% computing idct2 transform of F, i.e., getting images from their dct transforms
+t = 1:maxiter ; % iteration index
+semilogy(t,distance,'-x','MarkerSize',4);
+grid on;
+axis padded;
+xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
+legend('$ || f_t - f_{tr} ||_2 $ ', 'FontSize',10,'Interpreter','latex','Location','northeast');
+% ylabel('$ || f_t - f_{tr} ||_2 $', 'FontSize',10,'Interpreter','latex');
 
-% phiF = phi(F), where phi = idct2 matrix
+im = gcf;
+exportgraphics(im,'lena_distance.pdf','ContentType','vector') ;
 
-function phiF    = recover_vectorised_image_from_dct_transform(F, dictionary, patch_dimensions)
 
-[n, N] = size(F) ;
+% Plotting the step-size
+fig_stepsize = tiledlayout(1,1,'Padding','tight');
+fig_stepsize.Units = 'inches';
+fig_stepsize.OuterPosition = [0.25 0.25 3 3];
+nexttile;
 
-phiF  = zeros(n,N) ;
+t = 1:maxiter ; % iteration index
+plot(t,gamma,'-*','MarkerSize',4);
+grid on;
+axis padded;
+xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
+legend('$ \gamma_t $ ', 'FontSize',10,'Interpreter','latex','Location','southeast');
+% ylabel('$ \gamma(h_t) $', 'FontSize',20,'Interpreter','latex');
 
-for i = 1:N
-
-    patch = reshape(F(:,i), patch_dimensions) ; % for fast computation of dct/basis coefficients
-
-    if strcmp(dictionary,'dct')
-        idct2_im     = idct2(patch) ;
-        phiF(:,i) = reshape(idct2_im, [n 1]) ;
-    end
-
-end
-
-end
-
+im = gcf;
+exportgraphics(im,'lena_stepsize.pdf','ContentType','vector') ;
