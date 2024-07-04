@@ -17,45 +17,45 @@ im_output           = patch2image(Recover_output_FLIPS,im.noise,store_inp);
 %% Show images and export pdfs
 
 % original image
+
+figure(1)
 fig_original_image = tiledlayout(1,1,'Padding','tight');
 fig_original_image.Units = 'inches';
 fig_original_image.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(reordered_im_input) ;
+imagesc(im_input) ;
 colormap(gray) ;
-
-im = gcf;
-exportgraphics(im,'lena_original.pdf','ContentType','vector') ;
+image = gcf;
+exportgraphics(image,'lena_original.pdf','ContentType','vector') ;
 
 
 % noisy image
+
+figure(2)
 fig_original_image = tiledlayout(1,1,'Padding','tight');
 fig_original_image.Units = 'inches';
 fig_original_image.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(reordered_im_input_noise) ;
+imagesc(im_noisy) ;
 colormap(gray) ;
-
-im = gcf;
-exportgraphics(im,'lena_noisy.pdf','ContentType','vector') ;
+image = gcf;
+exportgraphics(image,'lena_noisy.pdf','ContentType','vector') ;
 
 
 % recovered image
+
+figure(3)
 fig_original_image = tiledlayout(1,1,'Padding','tight');
 fig_original_image.Units = 'inches';
 fig_original_image.OuterPosition = [0.25 0.25 3 3];
 nexttile;
 
-imagesc(reordered_im_output_FLIPSe) ;
+imagesc(im_output) ;
 colormap(gray) ;
-
-im = gcf;
-exportgraphics(im,'lena_recovered.pdf','ContentType','vector') ;
-% Set paper size to figure size
-fig.PaperSize = [fig_width, fig_height];
-
+image = gcf;
+exportgraphics(image,'lena_recovered.pdf','ContentType','vector') ;
 
 
 %% Different functions needed
@@ -86,18 +86,14 @@ end
 function phiF    = recover_vectorised_image_from_dct_transform(F, dictionary, patch_dimensions)
 
 [n, N] = size(F) ;
-
 phiF  = zeros(n,N) ;
 
 for i = 1:N
-
     patch = reshape(F(:,i), patch_dimensions) ; % for fast computation of dct/basis coefficients
-
     if strcmp(dictionary,'dct')
         idct2_im     = idct2(patch) ;
         phiF(:,i) = reshape(idct2_im, [n 1]) ;
     end
-
 end
 
 end
