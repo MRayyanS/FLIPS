@@ -2,23 +2,20 @@
 %  These files are alowed to be adjusted. However, without permission of
 %  the authors, it is not allowed to publish or distrubute these files.
 
-% clc
-clear all
-close all 
 
 %% Initialize and import 
 
 % Import image
-im.original    = imread('ASMLhq.png');
-patchsize      = 8;                                                             
+im.original    = imread('lena.png');
+patchsize      = 256;                                                             
 rescale_min    = 0;                                                   
 rescale_max    = 1;                                                        
 im.original    = rescale(im.original,rescale_min,rescale_max);           
 
 % Selecting image dimensions
-bigimdim1    = 930;                                                     
-bigimdim2    = 2642;     
-var_noise    = 0.0055;
+bigimdim1    = 256;                                                     
+bigimdim2    = 256;     
+var_noise    = 0.0075;
 start        = 1;                       % Starting pixel
 endd         = start + bigimdim1 - 1;   % Final pixel 
 
@@ -52,7 +49,7 @@ dictionary        =  'dct' ;
 
 
 % Calculating appriopriate epsilon
-epsilon = 1*sqrt(var_noise)*sqrt(n);  
+epsilon = 0.75*sqrt(var_noise)*sqrt(n);  
 
 maxiter        = 100 ;
 
@@ -92,11 +89,8 @@ opt_threshold   = 0.01 ;
 
 
 %% FLIPS solver fucntion
-betainv
-t_FLIPS  = cputime ;
-[F, e_flag, iter_till_conv] = FLIPS_denoising_final(X.noise,dictionary,epsilon,maxiter,oracle,betainv,momentum_para,patch_dimensions,opt_threshold) ;
-t_FLIPS  = cputime - t_FLIPS
 
+[F, e_flag, iter_till_conv] = FLIPS_denoising_final(X.noise,dictionary,epsilon,maxiter,oracle,betainv,momentum_para,patch_dimensions,opt_threshold) ;
 
 % run 'show_results.m' to recover images and to show images and plot relevant things
 
