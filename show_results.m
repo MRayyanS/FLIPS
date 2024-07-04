@@ -30,8 +30,8 @@ nexttile;
 imagesc(im_original) ;
 colormap(gray) ;
 
-im = gcf;
-exportgraphics(im,'lena_original.pdf','ContentType','vector') ;
+current_im = gcf;
+exportgraphics(current_im,'lena_original.pdf','ContentType','vector') ;
 
 
 % recovered image image
@@ -43,8 +43,8 @@ nexttile;
 imagesc(Recovered_image) ;
 colormap(gray) ;
 
-im = gcf;
-exportgraphics(im,'lena_FLIPS_recovered.pdf','ContentType','vector') ;
+current_im = gcf;
+exportgraphics(current_im,'lena_FLIPS_recovered.pdf','ContentType','vector') ;
 
 
 %% Plotting relevant things
@@ -64,8 +64,8 @@ xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
 legend('$ \eta(h_t) - \eta(h^*) $ ', 'FontSize',10,'Interpreter','latex','Location','southwest');
 % ylabel('$ \eta(h_t) - \eta(h^*) $', 'FontSize',10,'Interpreter','latex');
 
-im = gcf;
-exportgraphics(im,'lena_sub_optimality.pdf','ContentType','vector') ;
+current_im = gcf;
+exportgraphics(current_im,'lena_sub_optimality.pdf','ContentType','vector') ;
 
 
 % Plotting the distance to the true solution
@@ -87,8 +87,8 @@ xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
 legend('$ || f_t - f_{tr} ||_2 $ ', 'FontSize',10,'Interpreter','latex','Location','northeast');
 % ylabel('$ || f_t - f_{tr} ||_2 $', 'FontSize',10,'Interpreter','latex');
 
-im = gcf;
-exportgraphics(im,'lena_distance.pdf','ContentType','vector') ;
+current_im = gcf;
+exportgraphics(current_im,'lena_distance.pdf','ContentType','vector') ;
 
 
 % Plotting the step-size
@@ -105,5 +105,5 @@ xlabel('Iterations, $k$', 'FontSize',10,'Interpreter','latex');
 legend('$ \gamma_t $ ', 'FontSize',10,'Interpreter','latex','Location','southeast');
 % ylabel('$ \gamma(h_t) $', 'FontSize',20,'Interpreter','latex');
 
-im = gcf;
-exportgraphics(im,'lena_stepsize.pdf','ContentType','vector') ;
+current_im = gcf;
+exportgraphics(current_im,'lena_stepsize.pdf','ContentType','vector') ;
